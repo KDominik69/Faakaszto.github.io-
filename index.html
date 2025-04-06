@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akasztófa Játék</title>
@@ -283,9 +281,12 @@ select option {
             const restartLoseToastBtn = document.getElementById("restartLoseToastBtn");
             const correctWord = document.getElementById("correct-word");
             let helpCount = 0;
+            let lastSelectedWord = ""; 
 
             function startGame() {
-    selectedWord = categoryWords[selectedCategory][Math.floor(Math.random() * categoryWords[selectedCategory].length)].toLowerCase();
+    let availableWords = categoryWords[selectedCategory].filter(word => word !== lastSelectedWord); 
+    selectedWord = availableWords[Math.floor(Math.random() * availableWords.length)].toLowerCase();
+    lastSelectedWord = selectedWord; 
     displayWord = Array.from(selectedWord, char => char === " " ? " " : "_");
     wrongGuesses = 0;
     helpCount = 0; 
