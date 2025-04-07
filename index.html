@@ -164,7 +164,45 @@ h1 {
        padding-top: -50px;
     }
 }
-    
+@media (max-height: 700px) {
+    body {
+        padding: 20px 10px;
+        justify-content: flex-start; 
+    }
+
+    .container {
+        padding: 5px;
+        box-shadow: none; 
+    }
+
+    .word-display {
+        font-size: 1.5em;
+        margin: 20px 0;
+    }
+
+    .letters button {
+        font-size: 1em;
+        padding: 8px 10px;
+    }
+
+    #hangmanCanvas {
+        max-width: 180px;
+    }
+
+    .restart-btn {
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    #category-select {
+        font-size: 1em;
+        padding: 8px 10px;
+    }
+}
+
 
 select option {
     background-color: #5d3fd3;
