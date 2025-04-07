@@ -1,223 +1,231 @@
 <!DOCTYPE html>
-<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="hu">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akasztófa Játék</title>
     <style>
         body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    color: #fff;
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
 
-.container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 95%;
-    max-width: 700px;
-}
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 95%;
+            max-width: 700px;
+        }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-}
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
 
-h1 {
-    color: #fff;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-bottom: 15px;
-}
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
 
-#category-select {
-    font-size: 1.1em;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    max-width: 250px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
+        #category-select {
+            font-size: 1.1em;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
 
-#category-select:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
+        #category-select:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
 
-.word-display {
-    font-size: 2.2em;
-    letter-spacing: 0.4rem;
-    margin: 30px 0;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-}
+        .word-display {
+            font-size: 2.2em;
+            letter-spacing: 0.4rem;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
 
-.letters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-}
+        .letters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-.letters button {
-    font-size: 1.1em;
-    margin: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
+        .letters button {
+            font-size: 1.1em;
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
 
-.letters button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
+        .letters button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
 
-.letters button.selected {
-    background-color: #5d3fd3;
-}
+        .letters button.selected {
+            background-color: #5d3fd3;
+        }
 
-#hangmanCanvas {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-bottom: 1px;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-}
+        #hangmanCanvas {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
 
-.restart-btn {
-    background-color: #5d3fd3;
-    color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
+        .restart-btn {
+            background-color: #5d3fd3;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
 
-.restart-btn:hover {
-    background-color: #483d8b;
-}
-.disabled {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #ccc;
-    text-decoration: line-through;
-    cursor: not-allowed;
-}
+        .restart-btn:hover {
+            background-color: #483d8b;
+        }
 
-
-@media (min-width: 600px) {
-    .header {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    h1 {
-        margin-bottom: 0;
-        margin-right: 20px;
-    }
-
-    #category-select {
-        width: auto;
-        max-width: none;
-    }
-}
+        .disabled {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #ccc;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
 
 
+        @media (min-width: 600px) {
+            .header {
+                flex-direction: row;
+                justify-content: center;
+            }
 
-@media (min-width: 1024px) {
-    .container {
-        max-width: 900px;
-    }
+            h1 {
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
 
-    #hangmanCanvas {
-        max-width: 200px;
-    }
-
-    .letters {
-        gap: 10px;
-    }
-    .container{
-        font-size: 15px;
-    }
-    .word-display {
-       padding-top: -50px;
-    }
-}
-@media (max-height: 700px) {
-    body {
-        padding: 20px 10px;
-        justify-content: flex-start; 
-    }
-
-    .container {
-        padding: 5px;
-        box-shadow: none; 
-    }
-
-    .word-display {
-        font-size: 1.5em;
-        margin: 20px 0;
-    }
-
-    .letters button {
-        font-size: 1em;
-        padding: 8px 10px;
-    }
-
-    #hangmanCanvas {
-        max-width: 180px;
-    }
-
-    .restart-btn {
-        margin-top: 10px;
-    }
-
-    h1 {
-        font-size: 1.8em;
-    }
-
-    #category-select {
-        font-size: 1em;
-        padding: 8px 10px;
-    }
-}
+            #category-select {
+                width: auto;
+                max-width: none;
+            }
+        }
 
 
-select option {
-    background-color: #5d3fd3;
-    color: #fff;
-}
 
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+
+            #hangmanCanvas {
+                max-width: 200px;
+            }
+
+            .letters {
+                gap: 10px;
+            }
+
+            .container {
+                font-size: 15px;
+            }
+
+            .word-display {
+                padding-top: -50px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            body {
+                padding: 20px 10px;
+                justify-content: flex-start;
+            }
+
+            .container {
+                padding: 5px;
+                box-shadow: none;
+            }
+
+            .word-display {
+                font-size: 1.5em;
+                margin: 20px 0;
+            }
+
+            .letters button {
+                font-size: 1em;
+                padding: 8px 10px;
+            }
+
+            #hangmanCanvas {
+                max-width: 180px;
+            }
+
+            .restart-btn {
+                margin-top: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            #category-select {
+                font-size: 1em;
+                padding: 8px 10px;
+            }
+        }
+
+
+        select option {
+            background-color: #5d3fd3;
+            color: #fff;
+        }
     </style>
-<style type="text/css" id="operaUserStyle">
-  video {
-    filter: -opera-shader(url(data:text/plain;base64,Ly8gaHR0cHM6Ly9naXRodWIuY29tL0dQVU9wZW4tRWZmZWN0cy9GaWRlbGl0eUZYLUNBUwovLyB2MwoKdW5pZm9ybSBzaGFkZXIgaUNodW5rOwp1bmlmb3JtIGZsb2F0MiBpQ2h1bmtTaXplOwp1bmlmb3JtIGZsb2F0MiBpTW91c2U7CnVuaWZvcm0gZmxvYXQgaUFyZ3NbMV07Cgpjb25zdCBmbG9hdCBFUFNJT04gPSAwLjE7CmNvbnN0IGZsb2F0IFZfTUlOID0gMDsKY29uc3QgZmxvYXQgVl9MT1cgPSAwLjI1Owpjb25zdCBmbG9hdCBWX01FRCA9IDAuNTsKY29uc3QgZmxvYXQgVl9ISUdIID0gMC43NTsKY29uc3QgZmxvYXQgVl9NQVggPSAxOwoKY29uc3QgZmxvYXQgVEhSRVNIT0xEX0FSRUEgPSA4MDAgKiA2MDA7CmNvbnN0IGZsb2F0IE1JTl9BUkVBID0gNDAwICogMTAwOwpjb25zdCBmbG9hdCBNSU5fU1RSSVAgPSAyMDsKY29uc3QgZmxvYXQgTUFSR0lOID0gMTsKCmZsb2F0MyBwaXhlbChpbnQgeCwgaW50IHksIGZsb2F0MiB4eSkgewogICAgcmV0dXJuIGlDaHVuay5ldmFsKHh5ICsgZmxvYXQyKHgsIHkpKS5yZ2I7Cn0KCmZsb2F0MyBzaGFycGVuKGZsb2F0MiB4eSkgewogICAgZmxvYXQzIGYgPQogICAgICAgIHBpeGVsKC0xLCAtMSwgeHkpICogIDEgKwogICAgICAgIHBpeGVsKCAwLCAtMSwgeHkpICogLTEgKwogICAgICAgIHBpeGVsKCAxLCAtMSwgeHkpICogIDEgKwoKICAgICAgICBwaXhlbCgtMSwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMCwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMSwgMCwgeHkpICogLTEgICsKCiAgICAgICAgcGl4ZWwoLTEsIDEsIHh5KSAqIDEgICArCiAgICAgICAgcGl4ZWwoIDAsIDEsIHh5KSAqIC0xICArCiAgICAgICAgcGl4ZWwoIDEsIDEsIHh5KSAqIDE7CiAgICByZXR1cm4gZiAvIC0xOwp9CgpmbG9hdDQgUkdYMihmbG9hdDIgeHkpIHsKICAgIGZsb2F0NCBjb2xvciA9IGlDaHVuay5ldmFsKHh5KTsKCiAgICBpZiAoaUNodW5rU2l6ZS54ICogaUNodW5rU2l6ZS55IDwgTUlOX0FSRUEpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKGlDaHVua1NpemUueSA8IE1JTl9TVFJJUCB8fCBpQ2h1bmtTaXplLnggPCBNSU5fU1RSSVApIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKHh5LnggPCBNQVJHSU4gfHwgeHkueCA+IChpQ2h1bmtTaXplLnggLSBNQVJHSU4pIHx8CiAgICAgICAgeHkueSA8IE1BUkdJTiB8fCB4eS55ID4gKGlDaHVua1NpemUueSAtIE1BUkdJTikpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgcmV0dXJuIGZsb2F0NChzaGFycGVuKHh5KSwgMSk7Cn0KCmZsb2F0IG1pbjMoZmxvYXQgeCwgZmxvYXQgeSwgZmxvYXQgeikgewogICAgcmV0dXJuIG1pbih4LCBtaW4oeSwgeikpOwp9CgpmbG9hdCBtYXgzKGZsb2F0IHgsIGZsb2F0IHksIGZsb2F0IHopIHsKICAgIHJldHVybiBtYXgoeCwgbWF4KHksIHopKTsKfQoKZmxvYXQgcmNwKGZsb2F0IHYpIHsKICAgIHJldHVybiAxIC8gdjsKfQoKZmxvYXQzIFJHWDMoZmxvYXQyIHh5LCBmbG9hdCBzdHJlbmd0aCkgewogICAgZmxvYXQzIGEgPSBwaXhlbCgtMSwgLTEsIHh5KTsKICAgIGZsb2F0MyBiID0gcGl4ZWwoIDAsIC0xLCB4eSk7CiAgICBmbG9hdDMgYyA9IHBpeGVsKCAxLCAtMSwgeHkpOwoKICAgIGZsb2F0MyBkID0gcGl4ZWwoLTEsIDAsIHh5KTsKICAgIGZsb2F0MyBlID0gcGl4ZWwoIDAsIDAsIHh5KTsKICAgIGZsb2F0MyBmID0gcGl4ZWwoIDEsIDAsIHh5KTsKCiAgICBmbG9hdDMgZyA9IHBpeGVsKC0xLCAxLCB4eSk7CiAgICBmbG9hdDMgaCA9IHBpeGVsKCAwLCAxLCB4eSk7CiAgICBmbG9hdDMgaSA9IHBpeGVsKCAxLCAxLCB4eSk7CgogICAgZmxvYXQgbW5SID0gbWluMyhtaW4zKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBtbkcgPSBtaW4zKG1pbjMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG1uQiA9IG1pbjMobWluMyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG1uUjIgPSBtaW4zKG1pbjMobW5SLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG1uRzIgPSBtaW4zKG1pbjMobW5HLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG1uQjIgPSBtaW4zKG1pbjMobW5CLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBtblIgPSBtblIgKyBtblIyOwogICAgbW5HID0gbW5HICsgbW5HMjsKICAgIG1uQiA9IG1uQiArIG1uQjI7CgogICAgZmxvYXQgbXhSID0gbWF4MyhtYXgzKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBteEcgPSBtYXgzKG1heDMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG14QiA9IG1heDMobWF4MyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG14UjIgPSBtYXgzKG1heDMobXhSLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG14RzIgPSBtYXgzKG1heDMobXhHLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG14QjIgPSBtYXgzKG1heDMobXhCLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBteFIgPSBteFIgKyBteFIyOwogICAgbXhHID0gbXhHICsgbXhHMjsKICAgIG14QiA9IG14QiArIG14QjI7CgogICAgZmxvYXQgcmNwTVIgPSByY3AobXhSKTsKICAgIGZsb2F0IHJjcE1HID0gcmNwKG14Ryk7CiAgICBmbG9hdCByY3BNQiA9IHJjcChteEIpOwoKICAgIGZsb2F0IGFtcFIgPSBzYXR1cmF0ZShtaW4obW5SLCAyIC0gbXhSKSAqIHJjcE1SKTsKICAgIGZsb2F0IGFtcEcgPSBzYXR1cmF0ZShtaW4obW5HLCAyIC0gbXhHKSAqIHJjcE1HKTsKICAgIGZsb2F0IGFtcEIgPSBzYXR1cmF0ZShtaW4obW5CLCAyIC0gbXhCKSAqIHJjcE1CKTsKCiAgICBhbXBSID0gc3FydChhbXBSKTsKICAgIGFtcEcgPSBzcXJ0KGFtcEcpOwogICAgYW1wQiA9IHNxcnQoYW1wQik7CgogICAgZmxvYXQgcGVhayA9IC1yY3AobWl4KDgsIDUsIHN0cmVuZ3RoKSk7CgogICAgZmxvYXQgd1IgPSBhbXBSICogcGVhazsKICAgIGZsb2F0IHdHID0gYW1wRyAqIHBlYWs7CiAgICBmbG9hdCB3QiA9IGFtcEIgKiBwZWFrOwoKICAgIGZsb2F0IHJjcFdlaWdodFIgPSByY3AoMSArIDQgKiB3Uik7CiAgICBmbG9hdCByY3BXZWlnaHRHID0gcmNwKDEgKyA0ICogd0cpOwogICAgZmxvYXQgcmNwV2VpZ2h0QiA9IHJjcCgxICsgNCAqIHdCKTsKCiAgICByZXR1cm4gZmxvYXQzKAogICAgICAgIHNhdHVyYXRlKChiLnIgKiB3UiArIGQuciAqIHdSICsgZi5yICogd1IgKyBoLnIgKiB3UiArIGUucikgKiByY3BXZWlnaHRSKSwKICAgICAgICBzYXR1cmF0ZSgoYi5nICogd0cgKyBkLmcgKiB3RyArIGYuZyAqIHdHICsgaC5nICogd0cgKyBlLmcpICogcmNwV2VpZ2h0RyksCiAgICAgICAgc2F0dXJhdGUoKGIuYiAqIHdCICsgZC5iICogd0IgKyBmLmIgKiB3QiArIGguYiAqIHdCICsgZS5iKSAqIHJjcFdlaWdodEIpKTsKfQoKCmZsb2F0NCBtYWluKGZsb2F0MiB4eSkgewoKICAgIGZsb2F0NCBvcmlnaW5hbENvbG9yID0gaUNodW5rLmV2YWwoeHkpOwogICAgaWYgKG9yaWdpbmFsQ29sb3IuYSA8IDEpIHsKICAgICAgICByZXR1cm4gaUNodW5rLmV2YWwoeHkpOwogICAgfQoKICAgIGZsb2F0IGludGVuc2l0eSA9IGlBcmdzWzBdOwogICAgZmxvYXQgc3RyZW5ndGggPSAwOwogICAgZmxvYXQzIGNvbG9yOwoKICAgIGlmIChpbnRlbnNpdHkgPCBWX01JTiArIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMC4xMDsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfTE9XIC0gRVBTSU9OICYmIGludGVuc2l0eSA8IFZfTE9XICsgRVBTSU9OKSB7CiAgICAgICAgc3RyZW5ndGggPSAwLjMzOwogICAgICAgIGNvbG9yID0gUkdYMyh4eSwgc3RyZW5ndGgpOwoKICAgIH0gZWxzZSBpZiAoaW50ZW5zaXR5ID4gVl9NRUQgLSBFUFNJT04gJiYgaW50ZW5zaXR5IDwgVl9NRUQgKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuNTsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfSElHSCAtIEVQU0lPTiAmJiBpbnRlbnNpdHkgPCBWX0hJR0ggKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuOTk7CiAgICAgICAgY29sb3IgPSBSR1gzKHh5LCBzdHJlbmd0aCk7CgogICAgfSBlbHNlIGlmIChpbnRlbnNpdHkgPiBWX01BWCAtIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMTsKICAgICAgICBjb2xvciA9IFJHWDIoeHkpLnJnYjsKICAgIH0KCiAgICByZXR1cm4gZmxvYXQ0KGNvbG9yLCBvcmlnaW5hbENvbG9yLmEpOwp9) -opera-args(0.50 calc(env(-opera-accent-color-r, 255)/255) calc(env(-opera-accent-color-g, 255)/255) calc(env(-opera-accent-color-b, 255)/255)));
-  }
-  
-</style><style type="text/css"></style></head>
+    <style type="text/css" id="operaUserStyle">
+        video {
+            filter: -opera-shader(url(data:text/plain;base64,Ly8gaHR0cHM6Ly9naXRodWIuY29tL0dQVU9wZW4tRWZmZWN0cy9GaWRlbGl0eUZYLUNBUwovLyB2MwoKdW5pZm9ybSBzaGFkZXIgaUNodW5rOwp1bmlmb3JtIGZsb2F0MiBpQ2h1bmtTaXplOwp1bmlmb3JtIGZsb2F0MiBpTW91c2U7CnVuaWZvcm0gZmxvYXQgaUFyZ3NbMV07Cgpjb25zdCBmbG9hdCBFUFNJT04gPSAwLjE7CmNvbnN0IGZsb2F0IFZfTUlOID0gMDsKY29uc3QgZmxvYXQgVl9MT1cgPSAwLjI1Owpjb25zdCBmbG9hdCBWX01FRCA9IDAuNTsKY29uc3QgZmxvYXQgVl9ISUdIID0gMC43NTsKY29uc3QgZmxvYXQgVl9NQVggPSAxOwoKY29uc3QgZmxvYXQgVEhSRVNIT0xEX0FSRUEgPSA4MDAgKiA2MDA7CmNvbnN0IGZsb2F0IE1JTl9BUkVBID0gNDAwICogMTAwOwpjb25zdCBmbG9hdCBNSU5fU1RSSVAgPSAyMDsKY29uc3QgZmxvYXQgTUFSR0lOID0gMTsKCmZsb2F0MyBwaXhlbChpbnQgeCwgaW50IHksIGZsb2F0MiB4eSkgewogICAgcmV0dXJuIGlDaHVuay5ldmFsKHh5ICsgZmxvYXQyKHgsIHkpKS5yZ2I7Cn0KCmZsb2F0MyBzaGFycGVuKGZsb2F0MiB4eSkgewogICAgZmxvYXQzIGYgPQogICAgICAgIHBpeGVsKC0xLCAtMSwgeHkpICogIDEgKwogICAgICAgIHBpeGVsKCAwLCAtMSwgeHkpICogLTEgKwogICAgICAgIHBpeGVsKCAxLCAtMSwgeHkpICogIDEgKwoKICAgICAgICBwaXhlbCgtMSwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMCwgMCwgeHkpICogLTEgICsKICAgICAgICBwaXhlbCggMSwgMCwgeHkpICogLTEgICsKCiAgICAgICAgcGl4ZWwoLTEsIDEsIHh5KSAqIDEgICArCiAgICAgICAgcGl4ZWwoIDAsIDEsIHh5KSAqIC0xICArCiAgICAgICAgcGl4ZWwoIDEsIDEsIHh5KSAqIDE7CiAgICByZXR1cm4gZiAvIC0xOwp9CgpmbG9hdDQgUkdYMihmbG9hdDIgeHkpIHsKICAgIGZsb2F0NCBjb2xvciA9IGlDaHVuay5ldmFsKHh5KTsKCiAgICBpZiAoaUNodW5rU2l6ZS54ICogaUNodW5rU2l6ZS55IDwgTUlOX0FSRUEpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKGlDaHVua1NpemUueSA8IE1JTl9TVFJJUCB8fCBpQ2h1bmtTaXplLnggPCBNSU5fU1RSSVApIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgaWYgKHh5LnggPCBNQVJHSU4gfHwgeHkueCA+IChpQ2h1bmtTaXplLnggLSBNQVJHSU4pIHx8CiAgICAgICAgeHkueSA8IE1BUkdJTiB8fCB4eS55ID4gKGlDaHVua1NpemUueSAtIE1BUkdJTikpIHsKICAgICAgICByZXR1cm4gY29sb3I7CiAgICB9CgogICAgcmV0dXJuIGZsb2F0NChzaGFycGVuKHh5KSwgMSk7Cn0KCmZsb2F0IG1pbjMoZmxvYXQgeCwgZmxvYXQgeSwgZmxvYXQgeikgewogICAgcmV0dXJuIG1pbih4LCBtaW4oeSwgeikpOwp9CgpmbG9hdCBtYXgzKGZsb2F0IHgsIGZsb2F0IHksIGZsb2F0IHopIHsKICAgIHJldHVybiBtYXgoeCwgbWF4KHksIHopKTsKfQoKZmxvYXQgcmNwKGZsb2F0IHYpIHsKICAgIHJldHVybiAxIC8gdjsKfQoKZmxvYXQzIFJHWDMoZmxvYXQyIHh5LCBmbG9hdCBzdHJlbmd0aCkgewogICAgZmxvYXQzIGEgPSBwaXhlbCgtMSwgLTEsIHh5KTsKICAgIGZsb2F0MyBiID0gcGl4ZWwoIDAsIC0xLCB4eSk7CiAgICBmbG9hdDMgYyA9IHBpeGVsKCAxLCAtMSwgeHkpOwoKICAgIGZsb2F0MyBkID0gcGl4ZWwoLTEsIDAsIHh5KTsKICAgIGZsb2F0MyBlID0gcGl4ZWwoIDAsIDAsIHh5KTsKICAgIGZsb2F0MyBmID0gcGl4ZWwoIDEsIDAsIHh5KTsKCiAgICBmbG9hdDMgZyA9IHBpeGVsKC0xLCAxLCB4eSk7CiAgICBmbG9hdDMgaCA9IHBpeGVsKCAwLCAxLCB4eSk7CiAgICBmbG9hdDMgaSA9IHBpeGVsKCAxLCAxLCB4eSk7CgogICAgZmxvYXQgbW5SID0gbWluMyhtaW4zKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBtbkcgPSBtaW4zKG1pbjMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG1uQiA9IG1pbjMobWluMyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG1uUjIgPSBtaW4zKG1pbjMobW5SLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG1uRzIgPSBtaW4zKG1pbjMobW5HLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG1uQjIgPSBtaW4zKG1pbjMobW5CLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBtblIgPSBtblIgKyBtblIyOwogICAgbW5HID0gbW5HICsgbW5HMjsKICAgIG1uQiA9IG1uQiArIG1uQjI7CgogICAgZmxvYXQgbXhSID0gbWF4MyhtYXgzKGQuciwgZS5yLCBmLnIpLCBiLnIsIGgucik7CiAgICBmbG9hdCBteEcgPSBtYXgzKG1heDMoZC5nLCBlLmcsIGYuZyksIGIuZywgaC5nKTsKICAgIGZsb2F0IG14QiA9IG1heDMobWF4MyhkLmIsIGUuYiwgZi5iKSwgYi5iLCBoLmIpOwoKICAgIGZsb2F0IG14UjIgPSBtYXgzKG1heDMobXhSLCBhLnIsIGMuciksIGcuciwgaS5yKTsKICAgIGZsb2F0IG14RzIgPSBtYXgzKG1heDMobXhHLCBhLmcsIGMuZyksIGcuZywgaS5nKTsKICAgIGZsb2F0IG14QjIgPSBtYXgzKG1heDMobXhCLCBhLmIsIGMuYiksIGcuYiwgaS5iKTsKCiAgICBteFIgPSBteFIgKyBteFIyOwogICAgbXhHID0gbXhHICsgbXhHMjsKICAgIG14QiA9IG14QiArIG14QjI7CgogICAgZmxvYXQgcmNwTVIgPSByY3AobXhSKTsKICAgIGZsb2F0IHJjcE1HID0gcmNwKG14Ryk7CiAgICBmbG9hdCByY3BNQiA9IHJjcChteEIpOwoKICAgIGZsb2F0IGFtcFIgPSBzYXR1cmF0ZShtaW4obW5SLCAyIC0gbXhSKSAqIHJjcE1SKTsKICAgIGZsb2F0IGFtcEcgPSBzYXR1cmF0ZShtaW4obW5HLCAyIC0gbXhHKSAqIHJjcE1HKTsKICAgIGZsb2F0IGFtcEIgPSBzYXR1cmF0ZShtaW4obW5CLCAyIC0gbXhCKSAqIHJjcE1CKTsKCiAgICBhbXBSID0gc3FydChhbXBSKTsKICAgIGFtcEcgPSBzcXJ0KGFtcEcpOwogICAgYW1wQiA9IHNxcnQoYW1wQik7CgogICAgZmxvYXQgcGVhayA9IC1yY3AobWl4KDgsIDUsIHN0cmVuZ3RoKSk7CgogICAgZmxvYXQgd1IgPSBhbXBSICogcGVhazsKICAgIGZsb2F0IHdHID0gYW1wRyAqIHBlYWs7CiAgICBmbG9hdCB3QiA9IGFtcEIgKiBwZWFrOwoKICAgIGZsb2F0IHJjcFdlaWdodFIgPSByY3AoMSArIDQgKiB3Uik7CiAgICBmbG9hdCByY3BXZWlnaHRHID0gcmNwKDEgKyA0ICogd0cpOwogICAgZmxvYXQgcmNwV2VpZ2h0QiA9IHJjcCgxICsgNCAqIHdCKTsKCiAgICByZXR1cm4gZmxvYXQzKAogICAgICAgIHNhdHVyYXRlKChiLnIgKiB3UiArIGQuciAqIHdSICsgZi5yICogd1IgKyBoLnIgKiB3UiArIGUucikgKiByY3BXZWlnaHRSKSwKICAgICAgICBzYXR1cmF0ZSgoYi5nICogd0cgKyBkLmcgKiB3RyArIGYuZyAqIHdHICsgaC5nICogd0cgKyBlLmcpICogcmNwV2VpZ2h0RyksCiAgICAgICAgc2F0dXJhdGUoKGIuYiAqIHdCICsgZC5iICogd0IgKyBmLmIgKiB3QiArIGguYiAqIHdCICsgZS5iKSAqIHJjcFdlaWdodEIpKTsKfQoKCmZsb2F0NCBtYWluKGZsb2F0MiB4eSkgewoKICAgIGZsb2F0NCBvcmlnaW5hbENvbG9yID0gaUNodW5rLmV2YWwoeHkpOwogICAgaWYgKG9yaWdpbmFsQ29sb3IuYSA8IDEpIHsKICAgICAgICByZXR1cm4gaUNodW5rLmV2YWwoeHkpOwogICAgfQoKICAgIGZsb2F0IGludGVuc2l0eSA9IGlBcmdzWzBdOwogICAgZmxvYXQgc3RyZW5ndGggPSAwOwogICAgZmxvYXQzIGNvbG9yOwoKICAgIGlmIChpbnRlbnNpdHkgPCBWX01JTiArIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMC4xMDsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfTE9XIC0gRVBTSU9OICYmIGludGVuc2l0eSA8IFZfTE9XICsgRVBTSU9OKSB7CiAgICAgICAgc3RyZW5ndGggPSAwLjMzOwogICAgICAgIGNvbG9yID0gUkdYMyh4eSwgc3RyZW5ndGgpOwoKICAgIH0gZWxzZSBpZiAoaW50ZW5zaXR5ID4gVl9NRUQgLSBFUFNJT04gJiYgaW50ZW5zaXR5IDwgVl9NRUQgKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuNTsKICAgICAgICBjb2xvciA9IFJHWDMoeHksIHN0cmVuZ3RoKTsKCiAgICB9IGVsc2UgaWYgKGludGVuc2l0eSA+IFZfSElHSCAtIEVQU0lPTiAmJiBpbnRlbnNpdHkgPCBWX0hJR0ggKyBFUFNJT04pIHsKICAgICAgICBzdHJlbmd0aCA9IDAuOTk7CiAgICAgICAgY29sb3IgPSBSR1gzKHh5LCBzdHJlbmd0aCk7CgogICAgfSBlbHNlIGlmIChpbnRlbnNpdHkgPiBWX01BWCAtIEVQU0lPTikgewogICAgICAgIHN0cmVuZ3RoID0gMTsKICAgICAgICBjb2xvciA9IFJHWDIoeHkpLnJnYjsKICAgIH0KCiAgICByZXR1cm4gZmxvYXQ0KGNvbG9yLCBvcmlnaW5hbENvbG9yLmEpOwp9) -opera-args(0.50 calc(env(-opera-accent-color-r, 255)/255) calc(env(-opera-accent-color-g, 255)/255) calc(env(-opera-accent-color-b, 255)/255)));
+        }
+    </style>
+    <style type="text/css"></style>
+</head>
+
 <body>
-    
+
     <div class="container">
         <select id="category-select">
             <option value="programozas">Programozás</option>
@@ -229,7 +237,7 @@ select option {
         <button id="help-btn" class="restart-btn">Segítség Kérés</button>
         <div class="header">
             <h1>Akasztófa Játék</h1>
-            
+
         </div>
         <canvas id="hangmanCanvas" width="200" height="250"></canvas>
         <div id="lose-toast" class="toast" style="display: none;">
@@ -241,34 +249,44 @@ select option {
             <button id="restartWinToastBtn" class="restart-btn">Újra Kezdés</button>
         </div>
         <div id="word-display" class="word-display">_ _ s _ _ a</div>
-        <div id="letters" class="letters"><button disabled="" class="selected">a</button><button disabled="" class="selected">á</button><button>b</button><button>c</button><button>d</button><button disabled="" class="selected">e</button><button>é</button><button>f</button><button disabled="" class="selected">g</button><button>h</button><button>i</button><button>í</button><button>j</button><button>k</button><button>l</button><button disabled="" class="selected">m</button><button disabled="" class="selected">n</button><button>o</button><button>ó</button><button>ö</button><button>ő</button><button>p</button><button>q</button><button disabled="" class="selected">r</button><button disabled="" class="selected">s</button><button>t</button><button>u</button><button>ú</button><button>ü</button><button>ű</button><button disabled="" class="selected">v</button><button>w</button><button>x</button><button>y</button><button>z</button></div>
+        <div id="letters" class="letters"><button disabled="" class="selected">a</button><button disabled=""
+                class="selected">á</button><button>b</button><button>c</button><button>d</button><button disabled=""
+                class="selected">e</button><button>é</button><button>f</button><button disabled=""
+                class="selected">g</button><button>h</button><button>i</button><button>í</button><button>j</button><button>k</button><button>l</button><button
+                disabled="" class="selected">m</button><button disabled=""
+                class="selected">n</button><button>o</button><button>ó</button><button>ö</button><button>ő</button><button>p</button><button>q</button><button
+                disabled="" class="selected">r</button><button disabled=""
+                class="selected">s</button><button>t</button><button>u</button><button>ú</button><button>ü</button><button>ű</button><button
+                disabled=""
+                class="selected">v</button><button>w</button><button>x</button><button>y</button><button>z</button>
+        </div>
         <p id="game-message"></p>
     </div>
-    
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const categoryWords = {
-                programozas: ["programozás", "kodolás", "fejlesztő", "weboldal", "algoritmus", 
-        "szoftver", "hardver", "adatbazis", "backend", "frontend", 
-        "dibug", "debugger", "valtozó", "ciklus", "operator", 
-        "függvény", "osztály", "objektum", "modul", "keretrendszer"],
-                allatok: [ "kutya", "macska", "oroszlán", "elefánt", "zebra",
-        "tigris", "gepárd", "farkas", "medve", "szarvas",
-        "hiéna", "jaguár", "gorilla", "bivaly", "antilop",
-        "pingvin", "krokodil", "kaméleon", "papagáj", "bagoly"],
+                programozas: ["programozás", "kodolás", "fejlesztő", "weboldal", "algoritmus",
+                    "szoftver", "hardver", "adatbazis", "backend", "frontend",
+                    "dibug", "debugger", "valtozó", "ciklus", "operator",
+                    "függvény", "osztály", "objektum", "modul", "keretrendszer"],
+                allatok: ["kutya", "macska", "oroszlán", "elefánt", "zebra",
+                    "tigris", "gepárd", "farkas", "medve", "szarvas",
+                    "hiéna", "jaguár", "gorilla", "bivaly", "antilop",
+                    "pingvin", "krokodil", "kaméleon", "papagáj", "bagoly"],
                 etelek: ["pizza", "leves", "teszta", "sutemeny", "salata",
-        "kenyer", "pogacsa", "szendvics", "palacsinta", "fánk",
-        "gyros", "hamburger", "torta", "piskota", "gulyás",
-        "paprika", "rakotttészta", "pörkölt", "főzelék", "fagylalt"],
+                    "kenyer", "pogacsa", "szendvics", "palacsinta", "fánk",
+                    "gyros", "hamburger", "torta", "piskota", "gulyás",
+                    "paprika", "rakotttészta", "pörkölt", "főzelék", "fagylalt"],
                 Scifi: ["ürsikló", "robot", "android", "cyborg", "teleport",
-        "időutazás", "hipertér", "galaxis", "terraformálás", "paradoxon",
-        "idegenek", "droidok", "lézerfegyver", "mutácio", "nanobot",
-        "aszteroida", "csillaghajo", "kvantum", "exobolygo", "szingularitás"],
-        MO: ["gulyás", "csikós", "huszár", "puli", "kalocsa",
-        "dobostorta", "rubikkocka", "paprika", "betyár", "csárdás",
-        "balaton", "hortobágy", "turotorta", "csikós", "matyó",
-        "pogácsa", "kolbász", "fidesz", "foci", "szeged"],
+                    "időutazás", "hipertér", "galaxis", "terraformálás", "paradoxon",
+                    "idegenek", "droidok", "lézerfegyver", "mutácio", "nanobot",
+                    "aszteroida", "csillaghajo", "kvantum", "exobolygo", "szingularitás"],
+                MO: ["gulyás", "csikós", "huszár", "puli", "kalocsa",
+                    "dobostorta", "rubikkocka", "paprika", "betyár", "csárdás",
+                    "balaton", "hortobágy", "turotorta", "csikós", "matyó",
+                    "pogácsa", "kolbász", "fidesz", "foci", "szeged"],
             };
 
             let selectedCategory = "programozas";
@@ -288,26 +306,26 @@ select option {
             const restartLoseToastBtn = document.getElementById("restartLoseToastBtn");
             const correctWord = document.getElementById("correct-word");
             let helpCount = 0;
-            let lastSelectedWord = ""; 
+            let lastSelectedWord = "";
 
             function startGame() {
-    let availableWords = categoryWords[selectedCategory].filter(word => word !== lastSelectedWord); 
-    selectedWord = availableWords[Math.floor(Math.random() * availableWords.length)].toLowerCase();
-    lastSelectedWord = selectedWord; 
-    displayWord = Array.from(selectedWord, char => char === " " ? " " : "_");
-    wrongGuesses = 0;
-    helpCount = 0; 
-    gameMessage.textContent = "";
-    updateWordDisplay();
-    generateLetterButtons();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    winToast.style.display = "none";
-    loseToast.style.display = "none";
-    
-    const helpButton = document.getElementById("help-btn");
-    helpButton.classList.remove("disabled");
-    helpButton.disabled = false; 
-}
+                let availableWords = categoryWords[selectedCategory].filter(word => word !== lastSelectedWord);
+                selectedWord = availableWords[Math.floor(Math.random() * availableWords.length)].toLowerCase();
+                lastSelectedWord = selectedWord;
+                displayWord = Array.from(selectedWord, char => char === " " ? " " : "_");
+                wrongGuesses = 0;
+                helpCount = 0;
+                gameMessage.textContent = "";
+                updateWordDisplay();
+                generateLetterButtons();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                winToast.style.display = "none";
+                loseToast.style.display = "none";
+
+                const helpButton = document.getElementById("help-btn");
+                helpButton.classList.remove("disabled");
+                helpButton.disabled = false;
+            }
             document.getElementById("help-btn").addEventListener("click", requestHelp);
             function updateWordDisplay() {
                 wordDisplay.textContent = displayWord.join(" ");
@@ -316,37 +334,37 @@ select option {
                 }
             }
             function requestHelp() {
-    if (helpCount < 3) {
-        helpCount++;
-        const remainingLetters = selectedWord.split('').filter(letter => !displayWord.includes(letter));
-        if (remainingLetters.length > 0) {
-            const randomLetter = remainingLetters[Math.floor(Math.random() * remainingLetters.length)];
-            for (let i = 0; i < selectedWord.length; i++) {
-                if (selectedWord[i] === randomLetter) {
-                    displayWord[i] = randomLetter;
+                if (helpCount < 3) {
+                    helpCount++;
+                    const remainingLetters = selectedWord.split('').filter(letter => !displayWord.includes(letter));
+                    if (remainingLetters.length > 0) {
+                        const randomLetter = remainingLetters[Math.floor(Math.random() * remainingLetters.length)];
+                        for (let i = 0; i < selectedWord.length; i++) {
+                            if (selectedWord[i] === randomLetter) {
+                                displayWord[i] = randomLetter;
+                            }
+                        }
+                        updateWordDisplay();
+
+                        const letterButton = Array.from(lettersContainer.children).find(button => button.textContent === randomLetter);
+                        if (letterButton) {
+                            letterButton.disabled = true;
+                            letterButton.classList.add("selected");
+                        }
+                    }
+                } else {
+                    const helpButton = document.getElementById("help-btn");
+                    helpButton.classList.add("disabled");
+                    helpButton.disabled = true;
+                    alert("Már nem kérhetsz több segítséget!");
+                }
+
+                if (helpCount === 3) {
+                    const helpButton = document.getElementById("help-btn");
+                    helpButton.classList.add("disabled");
+                    helpButton.disabled = true;
                 }
             }
-            updateWordDisplay();
-
-            const letterButton = Array.from(lettersContainer.children).find(button => button.textContent === randomLetter);
-            if (letterButton) {
-                letterButton.disabled = true; 
-                letterButton.classList.add("selected"); 
-            }
-        }
-    } else {
-        const helpButton = document.getElementById("help-btn");
-        helpButton.classList.add("disabled");
-        helpButton.disabled = true; 
-        alert("Már nem kérhetsz több segítséget!");
-    }
-
-    if (helpCount === 3) {
-        const helpButton = document.getElementById("help-btn");
-        helpButton.classList.add("disabled");
-        helpButton.disabled = true; 
-    }
-}
             function generateLetterButtons() {
                 lettersContainer.innerHTML = "";
                 "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz".split("").forEach(letter => {
@@ -412,4 +430,6 @@ select option {
     </script>
 
 
-</body></html>
+</body>
+
+</html>
